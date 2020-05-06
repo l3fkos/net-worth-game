@@ -1,0 +1,33 @@
+.celeb-container{
+    background-color: #d6e9f9;
+    border-radius: 20px;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.celeb-name{
+    font-size: 42pt;
+    color: black;
+    font-family: Gabriola;
+}
+
+.celeb-occupation{
+    color: #4e555b;
+}
+
+.image-container{
+
+    width: 100%;
+    height: auto;
+    margin-top: -150px;
+}
+
+.title{
+    font-size: 48pt;
+    font-family: Arial;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+}

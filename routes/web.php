@@ -18,9 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index', function(){
-    $celebs = Celebrity::all();
-    $celeb = $celebs->find(1);
+Route::get('/index', 'CelebritiesController@index');
 
-    return view('index', compact('celeb'));
-});
