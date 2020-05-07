@@ -8,13 +8,13 @@ use App\Celebrity;
 class CelebritiesController extends Controller
 {
     public function index(){
-        $celeb = Celebrity::all();
-        $rand1 = rand(0, 259);
-        $rand2 = rand(0, 259);
-        $celeb1 = $celeb[$rand1];
-        $celeb2 = $celeb[$rand2];
+        $celebs = Celebrity::all();
+        $rand1 = rand(0, 204);
+        $rand2 = rand(0, 204);
+        $celeb1 = $celebs[$rand1];
+        $celeb2 = $celebs[$rand2];
         if($rand1 == $rand2){
-            $rand2 = rand(0, 259);
+            $rand2 = $rand1 + 1;
         }
         return view('index', [
             'celeb1' => $celeb1,

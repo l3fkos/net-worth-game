@@ -1921,13 +1921,15 @@ __webpack_require__.r(__webpack_exports__);
   props: ['celeb_1_image', 'celeb_1_net_worth', 'celeb_2_net_worth'],
   methods: {
     compareCelebs: function compareCelebs() {
-      if (this.celeb_1_net_worth > this.celeb_2_net_worth) {
-        alert('Correct! Celeb 1 is richer than celeb 2 celeb 1: ' + this.celeb_1_net_worth + ' celeb 2: ' + this.celeb_2_net_worth);
-      } else if (this.celeb_2_net_worth > this.celeb_1_net_worth) {
-        alert('Wrong! Celeb 2 is richer than celeb 1 celeb 1: ' + this.celeb_1_net_worth + ' celeb 2: ' + this.celeb_2_net_worth);
-      } else if (this.celeb_1_net_worth === this.celeb_2_net_worth) {
-        alert('Trick question! They have the same net worth.. celeb 1 ' + this.celeb_1_net_worth + ' celeb 2: ' + this.celeb_2_net_worth);
+      if (parseInt(this.celeb_1_net_worth, 10) > parseInt(this.celeb_2_net_worth, 10)) {
+        alert('Correct! Celeb 1 is richer than celeb 2 celeb 1: ' + parseInt(this.celeb_1_net_worth, 10) + ' celeb 2: ' + parseInt(this.celeb_2_net_worth, 10));
+      } else if (parseInt(this.celeb_1_net_worth, 10) < parseInt(this.celeb_2_net_worth, 10)) {
+        alert('Wrong! Celeb 2 is richer than celeb 1 celeb 1: ' + parseInt(this.celeb_1_net_worth, 10) + ' celeb 2: ' + parseInt(this.celeb_2_net_worth, 10));
+      } else {
+        alert('Trick question! They have the same net worth.. celeb 1 ' + parseInt(this.celeb_1_net_worth, 10) + ' celeb 2: ' + parseInt(this.celeb_2_net_worth, 10));
       }
+
+      location.reload();
     }
   }
 });
@@ -1956,15 +1958,45 @@ __webpack_require__.r(__webpack_exports__);
   props: ['celeb_2_image', 'celeb_2_net_worth', 'celeb_1_net_worth'],
   methods: {
     compareCelebs: function compareCelebs() {
-      if (this.celeb_2_net_worth > this.celeb_1_net_worth) {
+      if (parseInt(this.celeb_2_net_worth, 10) > parseInt(this.celeb_1_net_worth, 10)) {
         alert('Correct! Celeb 2 is richer than celeb 1 celeb 1: ' + this.celeb_1_net_worth + ' celeb 2: ' + this.celeb_2_net_worth);
-      } else if (this.celeb_1_net_worth > this.celeb_2_net_worth) {
+      } else if (parseInt(this.celeb_2_net_worth, 10) < parseInt(this.celeb_1_net_worth, 10)) {
         alert('Wrong! Celeb 1 is richer than celeb 2 celeb 1: ' + this.celeb_1_net_worth + ' celeb 2: ' + this.celeb_2_net_worth);
-      } else if (this.celeb_2_net_worth === this.celeb_1_net_worth) {
+      } else {
         alert('Trick question! They have the same net worth.. celeb 1 ' + this.celeb_1_net_worth + ' celeb 2: ' + this.celeb_2_net_worth);
       }
+
+      location.reload();
     }
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ResultComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ResultComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  },
+  props: ['celeb_1_net_worth', 'celeb_2_net_worth'],
+  data: function data() {
+    return {
+      winner: false
+    };
+  },
+  methods: {}
 });
 
 /***/ }),
@@ -37658,6 +37690,30 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ResultComponent.vue?vue&type=template&id=057ebc76&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ResultComponent.vue?vue&type=template&id=057ebc76& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.winner ? _c("p", [_vm._v("ohhh herrrrroooO!!!!!!")]) : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
 /*!********************************************************************!*\
   !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -49847,6 +49903,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.component('compare-button', __webpack_require__(/*! ./components/CompareButton.vue */ "./resources/js/components/CompareButton.vue")["default"]);
 Vue.component('compare-button2', __webpack_require__(/*! ./components/CompareButton2.vue */ "./resources/js/components/CompareButton2.vue")["default"]);
+Vue.component('result-component', __webpack_require__(/*! ./components/ResultComponent.vue */ "./resources/js/components/ResultComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -50037,6 +50094,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CompareButton2_vue_vue_type_template_id_4c476446___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CompareButton2_vue_vue_type_template_id_4c476446___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ResultComponent.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/ResultComponent.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ResultComponent_vue_vue_type_template_id_057ebc76___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ResultComponent.vue?vue&type=template&id=057ebc76& */ "./resources/js/components/ResultComponent.vue?vue&type=template&id=057ebc76&");
+/* harmony import */ var _ResultComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ResultComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ResultComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ResultComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ResultComponent_vue_vue_type_template_id_057ebc76___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ResultComponent_vue_vue_type_template_id_057ebc76___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ResultComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ResultComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/ResultComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ResultComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ResultComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ResultComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ResultComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ResultComponent.vue?vue&type=template&id=057ebc76&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/ResultComponent.vue?vue&type=template&id=057ebc76& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ResultComponent_vue_vue_type_template_id_057ebc76___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ResultComponent.vue?vue&type=template&id=057ebc76& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ResultComponent.vue?vue&type=template&id=057ebc76&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ResultComponent_vue_vue_type_template_id_057ebc76___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ResultComponent_vue_vue_type_template_id_057ebc76___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

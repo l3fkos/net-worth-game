@@ -11,19 +11,20 @@
         },
 
         props: ['celeb_2_image',
-            'celeb_2_net_worth',
-            'celeb_1_net_worth',
+                'celeb_2_net_worth',
+                'celeb_1_net_worth',
         ],
 
         methods:{
             compareCelebs(){
-                if(this.celeb_2_net_worth > this.celeb_1_net_worth) {
+                if(parseInt(this.celeb_2_net_worth, 10) > parseInt(this.celeb_1_net_worth, 10)) {
                     alert('Correct! Celeb 2 is richer than celeb 1 celeb 1: ' + this.celeb_1_net_worth + ' celeb 2: ' + this.celeb_2_net_worth );
-                }else if(this.celeb_1_net_worth > this.celeb_2_net_worth){
+                }else if(parseInt(this.celeb_2_net_worth, 10) < parseInt(this.celeb_1_net_worth, 10)){
                     alert('Wrong! Celeb 1 is richer than celeb 2 celeb 1: ' + this.celeb_1_net_worth + ' celeb 2: ' + this.celeb_2_net_worth);
-                }else if(this.celeb_2_net_worth === this.celeb_1_net_worth){
+                }else{
                     alert('Trick question! They have the same net worth.. celeb 1 ' + this.celeb_1_net_worth + ' celeb 2: ' + this.celeb_2_net_worth);
                 }
+                location.reload();
             }
         },
 

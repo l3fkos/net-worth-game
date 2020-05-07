@@ -21,6 +21,7 @@ window.Vue = require('vue');
 
 Vue.component('compare-button', require('./components/CompareButton.vue').default);
 Vue.component('compare-button2', require('./components/CompareButton2.vue').default);
+Vue.component('result-component', require('./components/ResultComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
