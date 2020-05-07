@@ -11,13 +11,14 @@ class CelebritiesController extends Controller
         $celeb = Celebrity::all();
         $rand1 = rand(0, 259);
         $rand2 = rand(0, 259);
+        $celeb1 = $celeb[$rand1];
+        $celeb2 = $celeb[$rand2];
         if($rand1 == $rand2){
             $rand2 = rand(0, 259);
         }
         return view('index', [
-            'celeb' => $celeb,
-            'rand1' => $rand1,
-            'rand2' => $rand2,
+            'celeb1' => $celeb1,
+            'celeb2' => $celeb2,
         ]);
     }
 }

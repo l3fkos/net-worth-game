@@ -2,12 +2,12 @@
     background-color: #d6e9f9;
     border-radius: 20px;
     padding-bottom: 10px;
-    cursor: pointer;
+
 }
 
 .celeb-name{
     font-size: 42pt;
-    color: black;
+    color: #000000;
     font-family: Gabriola;
 }
 
@@ -16,10 +16,10 @@
 }
 
 .image-container{
-
     width: 100%;
     height: auto;
     margin-top: -150px;
+    cursor: pointer;
 }
 
 .title{
