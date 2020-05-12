@@ -2,7 +2,7 @@
     background-color: #d6e9f9;
     border-radius: 20px;
     padding-bottom: 10px;
-
+    cursor: pointer;
 }
 
 .celeb-name{
@@ -19,11 +19,11 @@
     width: 100%;
     height: auto;
     margin-top: -150px;
-    cursor: pointer;
+
 }
 
 .title{
-    font-size: 48pt;
+    font-size: 40pt;
     font-family: Arial;
 }
 

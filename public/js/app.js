@@ -1967,18 +1967,77 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    console.log('Component mounted.');
+
+    if (localStorage.counter > 10) {
+      localStorage.counter = 1;
+      localStorage.rightAnswers = 0;
+      localStorage.wrongAnswers = 0;
+    }
+
+    if (localStorage.counter) {
+      this.counter = localStorage.counter;
+    }
+
+    if (localStorage.rightAnswers) {
+      this.rightAnswers = localStorage.rightAnswers;
+    }
+
+    if (localStorage.wrongAnswers) {
+      this.wrongAnswers = localStorage.wrongAnswers;
+    }
+  },
+  watch: {
+    counter: function counter(newCounter) {
+      localStorage.counter = newCounter;
+    },
+    rightAnswers: function rightAnswers(newRightAnswers) {
+      localStorage.rightAnswers = newRightAnswers;
+    },
+    wrongAnswers: function wrongAnswers(newWrongAnswers) {
+      localStorage.wrongAnswers = newWrongAnswers;
+    }
+  },
   data: function data() {
     return {
       showResult: false,
       answer1: '',
       right: false,
       counterRight: 0,
-      counterWrong: 0
+      counterWrong: 0,
+      counter: 1,
+      rightAnswers: 0,
+      wrongAnswers: 0,
+      clicked: false,
+      showModal: false,
+      modalText: ''
     };
-  },
-  mounted: function mounted() {
-    console.log('Component mounted.');
   },
   props: ['celeb_1_image', 'celeb_1_net_worth', 'celeb_1_name', 'celeb_1_category', 'celeb_2_image', 'celeb_2_net_worth', 'celeb_2_name', 'celeb_2_category'],
   computed: {
@@ -1993,31 +2052,102 @@ __webpack_require__.r(__webpack_exports__);
     compareCelebs: function compareCelebs(buttonId) {
       if (parseInt(this.celeb_1_net_worth, 10) > parseInt(this.celeb_2_net_worth, 10)) {
         if (buttonId === 1) {
-          this.showResult = !this.showResult;
+          this.showResult = true;
           this.answer = "<strong>Correct!</strong> <br>" + this.celeb_1_name + " Net Worth: $" + "<strong>" + this.numberWithCommas(this.celeb_1_net_worth) + "</strong>" + "<br>" + this.celeb_2_name + " Net Worth:$" + "<strong>" + this.numberWithCommas(this.celeb_2_net_worth) + "</strong>";
           this.right = true;
+
+          if (this.clicked === false) {
+            this.clicked = true;
+            this.rightAnswers++;
+          }
+
+          console.log(this.counter + " " + this.rightAnswers);
+
+          if (this.counter == 10 && this.rightAnswers >= 6) {
+            this.modalText = "Congratulations! You know how much money people who have more money than you have YAY!";
+            this.showModal = true;
+          } else if (this.counter == 10 && this.rightAnswers >= 6) {
+            this.modalText = "Sorry bruh! You dont know which rich people are richer than other rich people.";
+            this.showModal = true;
+          }
         } else if (buttonId === 2) {
-          this.showResult = !this.showResult;
+          this.showResult = true;
           this.answer = "<strong>Wrong!</strong> <br>" + this.celeb_1_name + " Net Worth: $" + "<strong>" + this.numberWithCommas(this.celeb_1_net_worth) + "</strong>" + "<br>" + this.celeb_2_name + " Net Worth:$" + "<strong>" + this.numberWithCommas(this.celeb_2_net_worth) + "</strong>";
           this.right = false;
+
+          if (this.clicked === false) {
+            this.clicked = true;
+            this.wrongAnswers++;
+          }
+
+          console.log(this.counter + " " + this.rightAnswers);
+
+          if (this.counter == 10 && this.rightAnswers <= 6) {
+            this.modalText = "Sorry bruh! You dont know which rich people are richer than other rich people.";
+            this.showModal = true;
+          } else if (this.counter == 10 && this.rightAnswers >= 6) {
+            this.modalText = "Congratulations! You know how much money people who have more money than you have YAY!";
+            this.showModal = true;
+          }
         }
       } else if (parseInt(this.celeb_1_net_worth, 10) < parseInt(this.celeb_2_net_worth, 10)) {
         if (buttonId === 2) {
-          this.showResult = !this.showResult;
-          this.answer = "<strong>Correct!</strong> <br>" + this.celeb_2_name + " Net Worth: $" + "<strong>" + this.numberWithCommas(this.celeb_2_net_worth) + "</strong>" + "<br>" + this.celeb_1name + " Net Worth: $" + "<strong>" + this.numberWithCommas(this.celeb_1_net_worth) + "</strong>";
+          this.showResult = true;
+          this.answer = "<strong>Correct!</strong> <br>" + this.celeb_2_name + " Net Worth: $" + "<strong>" + this.numberWithCommas(this.celeb_2_net_worth) + "</strong>" + "<br>" + this.celeb_1_name + " Net Worth: $" + "<strong>" + this.numberWithCommas(this.celeb_1_net_worth) + "</strong>";
           this.right = true;
+
+          if (this.clicked === false) {
+            this.clicked = true;
+            this.rightAnswers++;
+          }
+
+          if (this.counter == 10 && this.rightAnswers >= 6) {
+            this.modalText = "Congratulations! You know how much money people who have more money than you have YAY!";
+            this.showModal = true;
+          } else if (this.counter == 10 && this.rightAnswers <= 6) {
+            this.modalText = "Sorry bruh! You dont know which rich people are richer than other rich people.";
+            this.showModal = true;
+          }
         } else if (buttonId === 1) {
-          this.showResult = !this.showResult;
+          this.showResult = true;
           this.answer = "<strong>Wrong!</strong> <br>" + this.celeb_2_name + " Net Worth: $" + "<strong>" + this.numberWithCommas(this.celeb_2_net_worth) + "</strong>" + "<br>" + this.celeb_1_name + " Net Worth: $" + "<strong>" + this.numberWithCommas(this.celeb_1_net_worth) + "</strong>";
           this.right = false;
+
+          if (this.clicked === false) {
+            this.clicked = true;
+            this.wrongAnswers++;
+          }
+
+          console.log(this.counter + " " + this.rightAnswers);
+
+          if (this.counter == 10 && this.rightAnswers <= 6) {
+            this.modalText = "Sorry bruh! You dont know which rich people are richer than other rich people.";
+            this.showModal = true;
+          } else if (this.counter == 10 && this.rightAnswers >= 6) {
+            this.modalText = "Congratulations! You know how much money people who have more money than you have YAY!";
+            this.showModal = true;
+          }
         }
       } else {
         this.showResult = !this.showResult;
         this.answer = "Trick question! Both celebs are equal " + this.numberWithCommas(this.celeb_1_net_worth);
+        this.clicked = true;
       }
     },
+    //add commas to net worth number
     numberWithCommas: function numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+    clickNext: function clickNext() {
+      if (this.clicked) {
+        this.counter++;
+        location.reload();
+      } else {
+        alert("Make a selection");
+      }
+    },
+    closeModal: function closeModal() {
+      this.showModal = false;
     }
   }
 });
@@ -6678,7 +6808,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.correct{\n    text-align: center;\n    font-size: 20pt;\n    padding: 10px;\n    border: 2px solid green;\n    border-radius: 20px;\n    color: black;\n    background-color: #98dfb6;\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.wrong{\n    text-align: center;\n    font-size: 20pt;\n    padding: 10px;\n    color: black;\n    border: 2px solid red;\n    border-radius: 20px;\n    background-color: #ff4d4d;\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.correct{\n    text-align: center;\n    font-size: 20pt;\n    padding: 10px;\n    border: 2px solid green;\n    border-radius: 20px;\n    color: black;\n    background-color: #98dfb6;\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.wrong{\n    text-align: center;\n    font-size: 20pt;\n    padding: 10px;\n    color: black;\n    border: 2px solid red;\n    border-radius: 20px;\n    background-color: #ff4d4d;\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.counter{\n    font-size: 26pt;\n}\n.rightAnswers{\n    font-size: 16pt;\n    text-align: center;\n    color: black;\n    background-color: #98dfb6;\n    padding: 10px;\n    border: 2px solid black;\n    border-radius: 20px;\n}\n.wrongAnswers{\n    font-size: 16pt;\n    text-align: center;\n    padding: 10px;\n    color: black;\n    border: 2px solid black;\n    border-radius: 20px;\n    background-color: #ff4d4d;\n}\n.modal-mask {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.5);\n    display: table;\n    transition: opacity 0.3s ease;\n}\n.modal-wrapper {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container {\n    width: 300px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n    transition: all 0.3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body {\n    margin: 20px 0;\n}\n.modal-default-button {\n    float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n    opacity: 0;\n}\n.modal-leave-active {\n    opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n    transform: scale(1.1);\n}\n\n", ""]);
 
 // exports
 
@@ -38473,94 +38603,164 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "row justify-content-center d-inline" }, [
+  return _c(
+    "div",
+    [
       _c(
         "div",
         {
-          staticClass:
-            "celeb-container col-5 text-center hvr-bob  hvr-border-fade"
+          staticClass: "row justify-content-between",
+          staticStyle: { "margin-bottom": "250px" }
         },
         [
-          _c("div", { staticClass: "image-container" }, [
-            _c("img", {
-              staticClass: "rounded-circle",
-              attrs: { src: _vm.celeb_1_image, alt: "celeb image" },
-              on: {
-                click: function($event) {
-                  return _vm.compareCelebs(1)
-                }
-              }
-            })
+          _c("div", { staticClass: "counter col-2" }, [
+            _vm._v(_vm._s(_vm.counter) + " / 10")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "celeb-name" }, [
-            _c("strong", [_vm._v(_vm._s(_vm.celeb_1_name))]),
-            _c("br")
+          _c("div", { staticClass: "rightAnswers col-md-2 offset-md-5" }, [
+            _vm._v(" Right Answers "),
+            _c("br"),
+            _vm._v(_vm._s(_vm.rightAnswers) + " ")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "celeb-occupation" }, [
-            _c("h3", [_vm._v(_vm._s(_vm.celeb_1_category))])
+          _c("div", { staticClass: "wrongAnswers col-2 " }, [
+            _vm._v(" Wrong Answers "),
+            _c("br"),
+            _vm._v(_vm._s(_vm.wrongAnswers) + " ")
           ])
         ]
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "celeb-container col-5 text-center hvr-bob  hvr-border-fade ml-5"
-        },
-        [
-          _c("div", { staticClass: "image-container" }, [
-            _c("img", {
-              staticClass: "rounded-circle",
-              attrs: { src: _vm.celeb_2_image, alt: "celeb image" },
-              on: {
-                click: function($event) {
-                  return _vm.compareCelebs(2)
-                }
+      _c("div", { staticClass: "row justify-content-center d-inline" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "celeb-container col-5 text-center hvr-bob  hvr-border-fade",
+            on: {
+              click: function($event) {
+                return _vm.compareCelebs(1)
               }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "celeb-name" }, [
-            _c("strong", [_vm._v(_vm._s(_vm.celeb_2_name))]),
-            _c("br")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "celeb-occupation" }, [
-            _c("h3", [_vm._v(_vm._s(_vm.celeb_2_category))])
+            }
+          },
+          [
+            _c("div", { staticClass: "image-container" }, [
+              _c("img", {
+                staticClass: "rounded-circle",
+                attrs: { src: _vm.celeb_1_image, alt: "celeb image" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "celeb-name" }, [
+              _c("strong", [_vm._v(_vm._s(_vm.celeb_1_name))]),
+              _c("br")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "celeb-occupation" }, [
+              _c("h3", [_vm._v(_vm._s(_vm.celeb_1_category))])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "celeb-container col-5 text-center hvr-bob  hvr-border-fade ml-5",
+            on: {
+              click: function($event) {
+                return _vm.compareCelebs(2)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "image-container" }, [
+              _c("img", {
+                staticClass: "rounded-circle",
+                attrs: { src: _vm.celeb_2_image, alt: "celeb image" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "celeb-name" }, [
+              _c("strong", [_vm._v(_vm._s(_vm.celeb_2_name))]),
+              _c("br")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "celeb-occupation" }, [
+              _c("h3", [_vm._v(_vm._s(_vm.celeb_2_category))])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-dark h-50px ml-5 pl-4 pr-4",
+            on: { click: _vm.clickNext }
+          },
+          [_vm._v("\n                    Next\n                ")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-4" }, [
+          _c("div", { staticClass: "col-10 ml-2" }, [
+            _vm.showResult
+              ? _c("div", { class: _vm.classObject }, [
+                  _c("p", { domProps: { innerHTML: _vm._s(_vm.answer) } })
+                ])
+              : _vm._e()
           ])
-        ]
-      ),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "row mt-4" }, [
-        _c("div", { staticClass: "col-10 ml-2" }, [
-          _vm.showResult
-            ? _c("div", { class: _vm.classObject }, [
-                _c("p", { domProps: { innerHTML: _vm._s(_vm.answer) } })
-              ])
-            : _vm._e()
         ])
-      ])
-    ])
-  ])
+      ]),
+      _vm._v(" "),
+      _vm.showModal
+        ? _c("transition", { attrs: { name: "modal" } }, [
+            _c("div", { staticClass: "modal-mask" }, [
+              _c("div", { staticClass: "modal-wrapper" }, [
+                _c("div", { staticClass: "modal-container" }, [
+                  _c(
+                    "div",
+                    { staticClass: "modal-body" },
+                    [
+                      _vm._t("body", [
+                        _c("div", {
+                          domProps: { textContent: _vm._s(_vm.modalText) }
+                        })
+                      ])
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "modal-footer" },
+                    [
+                      _vm._t("footer", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "modal-default-button",
+                            on: { click: _vm.closeModal }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                    OK\n                                "
+                            )
+                          ]
+                        )
+                      ])
+                    ],
+                    2
+                  )
+                ])
+              ])
+            ])
+          ])
+        : _vm._e()
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "/index" } }, [
-      _c("button", { staticClass: "btn btn-dark h-50px ml-5 pl-4 pr-4" }, [
-        _vm._v("\n                    Next\n                ")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

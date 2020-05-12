@@ -9,12 +9,12 @@ class CelebritiesController extends Controller
 {
     public function index(){
         $celebs = Celebrity::all();
-        $rand1 = rand(0, 194);
-        $rand2 = rand(0, 194);
+        $rand1 = rand(0, 185);
+        $rand2 = rand(0, 185);
         $celeb1 = $celebs[$rand1];
         $celeb2 = $celebs[$rand2];
         if($rand1 == $rand2){
-            $rand1 = rand(0, 194);
+            $rand1 = $rand2 + 1;
         }
         return view('index', [
             'celeb1' => $celeb1,

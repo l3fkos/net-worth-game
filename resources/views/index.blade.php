@@ -3,11 +3,14 @@
 @section('content')
     <div class="row">
         <div class="col-12 mt-4 text-center">
-            <div style="margin-bottom: 220px;" class="title">
-                Who's Richer?
+            <div style="margin-bottom: 120px;" class="title">
+                Who's Richer?<br>
+                <span style="font-size: 18pt;">Get 7 out of 10 right to win.</span>
             </div>
+
         </div>
     </div>
+
     <compare-button  celeb_1_image="{{$celeb1->image}}"
                      celeb_1_net_worth="{{$celeb1->net_worth}}"
                      celeb_1_name="{{$celeb1->name}}"
