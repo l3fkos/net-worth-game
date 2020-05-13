@@ -1,23 +1,18 @@
 <template>
     <div>
-<!--            <div class="image-container">-->
-<!--                <img class="rounded-circle" v-bind:src="celeb_1_image" @click="compareCelebs" alt="celeb image">-->
-<!--            </div>-->
-<!--            <div class="celeb-name">-->
-<!--                <strong>{{celeb_1_name}}</strong><br>-->
-<!--            </div>-->
-<!--            <div class="celeb-occupation">-->
-<!--                <h3>{{celeb_1_category}}</h3>-->
-<!--            </div>-->
-<!--            <div :class="classObject" v-if="showResult">-->
-<!--                 <h1 v-html="answer"></h1>-->
-<!--            </div>-->
 
         <div class="row justify-content-between" style="margin-bottom: 250px;">
             <div class="counter col-2">{{counter}} / 10</div>
             <div class="rightAnswers col-md-2 offset-md-5"> Right Answers <br>{{rightAnswers}} </div>
             <div class="wrongAnswers col-2 "> Wrong Answers <br>{{wrongAnswers}} </div>
 
+        </div>
+        <div class="row" style="margin-bottom: 150px; margin-top: -200px;">
+            <div class="col-10 ml-2">
+                <div :class="classObject" v-if="showResult">
+                    <p v-html="answer"></p>
+                </div>
+            </div>
         </div>
 
         <div class="row justify-content-center d-inline">
@@ -48,13 +43,6 @@
                 <button class="btn btn-dark h-50px ml-5 pl-4 pr-4" @click="clickNext">
                     Next
                 </button>
-            <div class="row mt-4">
-                <div class="col-10 ml-2">
-                    <div :class="classObject" v-if="showResult">
-                        <p v-html="answer"></p>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <transition name="modal" v-if="showModal">
@@ -127,6 +115,7 @@
                 clicked: false,
                 showModal: false,
                 modalText: '',
+                trick: false,
             }
         },
 
@@ -146,6 +135,7 @@
                 return {
                     'correct': this.right,
                     'wrong': this.right === false,
+                    'neutral': this.right === null,
                 }
             }
         },
@@ -159,11 +149,10 @@
                         this.answer = "<strong>Correct!</strong> <br>" + this.celeb_1_name + " Net Worth: $"  +  "<strong>" + this.numberWithCommas(this.celeb_1_net_worth) + "</strong>" +
                         "<br>" + this.celeb_2_name + " Net Worth:$"  +  "<strong>" + this.numberWithCommas(this.celeb_2_net_worth) + "</strong>";
                         this.right = true;
+                        console.log(this.counter + " " +   this.rightAnswers + " " + this.wrongAnswers );
                         if(this.clicked === false){
                             this.clicked = true;
-                            this.rightAnswers++;
                         }
-                        console.log(this.counter + " " + this.rightAnswers);
                         if(this.counter == 10 && this.rightAnswers >= 6){
                             this.modalText = "Congratulations! You know how much money people who have more money than you have YAY!";
                             this.showModal = true;
@@ -176,11 +165,10 @@
                         this.answer = "<strong>Wrong!</strong> <br>" + this.celeb_1_name + " Net Worth: $"  + "<strong>" + this.numberWithCommas(this.celeb_1_net_worth) + "</strong>" +
                         "<br>" + this.celeb_2_name + " Net Worth:$"  +  "<strong>" + this.numberWithCommas(this.celeb_2_net_worth) + "</strong>";
                         this.right = false;
+                        console.log(this.counter + " " +   this.rightAnswers + " " + this.wrongAnswers );
                         if(this.clicked === false){
                             this.clicked = true;
-                            this.wrongAnswers++;
                         }
-                        console.log(this.counter + " " + this.rightAnswers);
                         if(this.counter == 10 && this.rightAnswers <= 6){
                             this.modalText = "Sorry bruh! You dont know which rich people are richer than other rich people.";
                             this.showModal = true;
@@ -195,9 +183,9 @@
                         this.answer = "<strong>Correct!</strong> <br>" + this.celeb_2_name + " Net Worth: $"  +  "<strong>" + this.numberWithCommas(this.celeb_2_net_worth) +  "</strong>" +
                         "<br>" + this.celeb_1_name + " Net Worth: $"  +  "<strong>" + this.numberWithCommas(this.celeb_1_net_worth) + "</strong>";
                         this.right = true;
+                        console.log(this.counter + " " +   this.rightAnswers + " " + this.wrongAnswers );
                         if(this.clicked === false){
                             this.clicked = true;
-                            this.rightAnswers++;
                         }
                         if(this.counter == 10 && this.rightAnswers >= 6){
                             this.modalText = "Congratulations! You know how much money people who have more money than you have YAY!";
@@ -211,11 +199,11 @@
                         this.answer = "<strong>Wrong!</strong> <br>" + this.celeb_2_name + " Net Worth: $"  +  "<strong>" + this.numberWithCommas(this.celeb_2_net_worth) + "</strong>" +
                             "<br>" + this.celeb_1_name + " Net Worth: $"  +  "<strong>" + this.numberWithCommas(this.celeb_1_net_worth) + "</strong>";
                         this.right = false;
+                        console.log(this.counter + " " +   this.rightAnswers + " " + this.wrongAnswers );
                         if(this.clicked === false){
                             this.clicked = true;
-                            this.wrongAnswers++;
                         }
-                        console.log(this.counter + " " + this.rightAnswers);
+
                         if(this.counter == 10 && this.rightAnswers <= 6){
                             this.modalText = "Sorry bruh! You dont know which rich people are richer than other rich people.";
                             this.showModal = true;
@@ -227,7 +215,9 @@
                 }else{
                     this.showResult = ! this.showResult;
                     this.answer = "Trick question! Both celebs are equal " + this.numberWithCommas(this.celeb_1_net_worth);
+                    this.trick = true;
                     this.clicked = true;
+                    this.right = null;
                 }
             },
             //add commas to net worth number
@@ -237,7 +227,14 @@
 
             clickNext: function(){
                 if(this.clicked){
-                    this.counter++;
+                    if(!this.trick) {
+                        this.counter++;
+                    }
+                    if(this.right === true){
+                        this.rightAnswers++
+                    }else if(this.right === false){
+                        this.wrongAnswers++;
+                    }
                     location.reload();
                 }else{
                     alert("Make a selection");
@@ -278,6 +275,18 @@
         margin-bottom: 10px;
     }
 
+    .neutral{
+        text-align: center;
+        font-size: 20pt;
+        padding: 10px;
+        color: black;
+        border: 2px solid red;
+        border-radius: 20px;
+        background-color: lightgray;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
     .counter{
         font-size: 26pt;
     }
@@ -287,7 +296,7 @@
         text-align: center;
         color: black;
         background-color: #98dfb6;
-        padding: 10px;
+        padding: 6px;
         border: 2px solid black;
         border-radius: 20px;
     }
@@ -295,7 +304,7 @@
     .wrongAnswers{
         font-size: 16pt;
         text-align: center;
-        padding: 10px;
+        padding: 6px;
         color: black;
         border: 2px solid black;
         border-radius: 20px;

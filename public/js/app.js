@@ -1979,18 +1979,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -2036,7 +2024,8 @@ __webpack_require__.r(__webpack_exports__);
       wrongAnswers: 0,
       clicked: false,
       showModal: false,
-      modalText: ''
+      modalText: '',
+      trick: false
     };
   },
   props: ['celeb_1_image', 'celeb_1_net_worth', 'celeb_1_name', 'celeb_1_category', 'celeb_2_image', 'celeb_2_net_worth', 'celeb_2_name', 'celeb_2_category'],
@@ -2044,7 +2033,8 @@ __webpack_require__.r(__webpack_exports__);
     classObject: function classObject() {
       return {
         'correct': this.right,
-        'wrong': this.right === false
+        'wrong': this.right === false,
+        'neutral': this.right === null
       };
     }
   },
@@ -2055,13 +2045,11 @@ __webpack_require__.r(__webpack_exports__);
           this.showResult = true;
           this.answer = "<strong>Correct!</strong> <br>" + this.celeb_1_name + " Net Worth: $" + "<strong>" + this.numberWithCommas(this.celeb_1_net_worth) + "</strong>" + "<br>" + this.celeb_2_name + " Net Worth:$" + "<strong>" + this.numberWithCommas(this.celeb_2_net_worth) + "</strong>";
           this.right = true;
+          console.log(this.counter + " " + this.rightAnswers + " " + this.wrongAnswers);
 
           if (this.clicked === false) {
             this.clicked = true;
-            this.rightAnswers++;
           }
-
-          console.log(this.counter + " " + this.rightAnswers);
 
           if (this.counter == 10 && this.rightAnswers >= 6) {
             this.modalText = "Congratulations! You know how much money people who have more money than you have YAY!";
@@ -2074,13 +2062,11 @@ __webpack_require__.r(__webpack_exports__);
           this.showResult = true;
           this.answer = "<strong>Wrong!</strong> <br>" + this.celeb_1_name + " Net Worth: $" + "<strong>" + this.numberWithCommas(this.celeb_1_net_worth) + "</strong>" + "<br>" + this.celeb_2_name + " Net Worth:$" + "<strong>" + this.numberWithCommas(this.celeb_2_net_worth) + "</strong>";
           this.right = false;
+          console.log(this.counter + " " + this.rightAnswers + " " + this.wrongAnswers);
 
           if (this.clicked === false) {
             this.clicked = true;
-            this.wrongAnswers++;
           }
-
-          console.log(this.counter + " " + this.rightAnswers);
 
           if (this.counter == 10 && this.rightAnswers <= 6) {
             this.modalText = "Sorry bruh! You dont know which rich people are richer than other rich people.";
@@ -2095,10 +2081,10 @@ __webpack_require__.r(__webpack_exports__);
           this.showResult = true;
           this.answer = "<strong>Correct!</strong> <br>" + this.celeb_2_name + " Net Worth: $" + "<strong>" + this.numberWithCommas(this.celeb_2_net_worth) + "</strong>" + "<br>" + this.celeb_1_name + " Net Worth: $" + "<strong>" + this.numberWithCommas(this.celeb_1_net_worth) + "</strong>";
           this.right = true;
+          console.log(this.counter + " " + this.rightAnswers + " " + this.wrongAnswers);
 
           if (this.clicked === false) {
             this.clicked = true;
-            this.rightAnswers++;
           }
 
           if (this.counter == 10 && this.rightAnswers >= 6) {
@@ -2112,13 +2098,11 @@ __webpack_require__.r(__webpack_exports__);
           this.showResult = true;
           this.answer = "<strong>Wrong!</strong> <br>" + this.celeb_2_name + " Net Worth: $" + "<strong>" + this.numberWithCommas(this.celeb_2_net_worth) + "</strong>" + "<br>" + this.celeb_1_name + " Net Worth: $" + "<strong>" + this.numberWithCommas(this.celeb_1_net_worth) + "</strong>";
           this.right = false;
+          console.log(this.counter + " " + this.rightAnswers + " " + this.wrongAnswers);
 
           if (this.clicked === false) {
             this.clicked = true;
-            this.wrongAnswers++;
           }
-
-          console.log(this.counter + " " + this.rightAnswers);
 
           if (this.counter == 10 && this.rightAnswers <= 6) {
             this.modalText = "Sorry bruh! You dont know which rich people are richer than other rich people.";
@@ -2131,7 +2115,9 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.showResult = !this.showResult;
         this.answer = "Trick question! Both celebs are equal " + this.numberWithCommas(this.celeb_1_net_worth);
+        this.trick = true;
         this.clicked = true;
+        this.right = null;
       }
     },
     //add commas to net worth number
@@ -2140,7 +2126,16 @@ __webpack_require__.r(__webpack_exports__);
     },
     clickNext: function clickNext() {
       if (this.clicked) {
-        this.counter++;
+        if (!this.trick) {
+          this.counter++;
+        }
+
+        if (this.right === true) {
+          this.rightAnswers++;
+        } else if (this.right === false) {
+          this.wrongAnswers++;
+        }
+
         location.reload();
       } else {
         alert("Make a selection");
@@ -6808,7 +6803,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.correct{\n    text-align: center;\n    font-size: 20pt;\n    padding: 10px;\n    border: 2px solid green;\n    border-radius: 20px;\n    color: black;\n    background-color: #98dfb6;\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.wrong{\n    text-align: center;\n    font-size: 20pt;\n    padding: 10px;\n    color: black;\n    border: 2px solid red;\n    border-radius: 20px;\n    background-color: #ff4d4d;\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.counter{\n    font-size: 26pt;\n}\n.rightAnswers{\n    font-size: 16pt;\n    text-align: center;\n    color: black;\n    background-color: #98dfb6;\n    padding: 10px;\n    border: 2px solid black;\n    border-radius: 20px;\n}\n.wrongAnswers{\n    font-size: 16pt;\n    text-align: center;\n    padding: 10px;\n    color: black;\n    border: 2px solid black;\n    border-radius: 20px;\n    background-color: #ff4d4d;\n}\n.modal-mask {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.5);\n    display: table;\n    transition: opacity 0.3s ease;\n}\n.modal-wrapper {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container {\n    width: 300px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n    transition: all 0.3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body {\n    margin: 20px 0;\n}\n.modal-default-button {\n    float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n    opacity: 0;\n}\n.modal-leave-active {\n    opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n    transform: scale(1.1);\n}\n\n", ""]);
+exports.push([module.i, "\n.correct{\n    text-align: center;\n    font-size: 20pt;\n    padding: 10px;\n    border: 2px solid green;\n    border-radius: 20px;\n    color: black;\n    background-color: #98dfb6;\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.wrong{\n    text-align: center;\n    font-size: 20pt;\n    padding: 10px;\n    color: black;\n    border: 2px solid red;\n    border-radius: 20px;\n    background-color: #ff4d4d;\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.neutral{\n    text-align: center;\n    font-size: 20pt;\n    padding: 10px;\n    color: black;\n    border: 2px solid red;\n    border-radius: 20px;\n    background-color: lightgray;\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.counter{\n    font-size: 26pt;\n}\n.rightAnswers{\n    font-size: 16pt;\n    text-align: center;\n    color: black;\n    background-color: #98dfb6;\n    padding: 6px;\n    border: 2px solid black;\n    border-radius: 20px;\n}\n.wrongAnswers{\n    font-size: 16pt;\n    text-align: center;\n    padding: 6px;\n    color: black;\n    border: 2px solid black;\n    border-radius: 20px;\n    background-color: #ff4d4d;\n}\n.modal-mask {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.5);\n    display: table;\n    transition: opacity 0.3s ease;\n}\n.modal-wrapper {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container {\n    width: 300px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n    transition: all 0.3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body {\n    margin: 20px 0;\n}\n.modal-default-button {\n    float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n    opacity: 0;\n}\n.modal-leave-active {\n    opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n    transform: scale(1.1);\n}\n\n", ""]);
 
 // exports
 
@@ -38631,6 +38626,23 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "row",
+          staticStyle: { "margin-bottom": "150px", "margin-top": "-200px" }
+        },
+        [
+          _c("div", { staticClass: "col-10 ml-2" }, [
+            _vm.showResult
+              ? _c("div", { class: _vm.classObject }, [
+                  _c("p", { domProps: { innerHTML: _vm._s(_vm.answer) } })
+                ])
+              : _vm._e()
+          ])
+        ]
+      ),
+      _vm._v(" "),
       _c("div", { staticClass: "row justify-content-center d-inline" }, [
         _c(
           "div",
@@ -38698,18 +38710,8 @@ var render = function() {
             staticClass: "btn btn-dark h-50px ml-5 pl-4 pr-4",
             on: { click: _vm.clickNext }
           },
-          [_vm._v("\n                    Next\n                ")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "row mt-4" }, [
-          _c("div", { staticClass: "col-10 ml-2" }, [
-            _vm.showResult
-              ? _c("div", { class: _vm.classObject }, [
-                  _c("p", { domProps: { innerHTML: _vm._s(_vm.answer) } })
-                ])
-              : _vm._e()
-          ])
-        ])
+          [_vm._v("\n                Next\n            ")]
+        )
       ]),
       _vm._v(" "),
       _vm.showModal
@@ -38743,7 +38745,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                                    OK\n                                "
+                              "\n                                OK\n                            "
                             )
                           ]
                         )

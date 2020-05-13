@@ -2,12 +2,11 @@
 
 @section('content')
     <div class="row">
-        <div class="col-12 mt-4 text-center">
-            <div style="margin-bottom: 120px;" class="title">
+        <div class="col-12 mt-2 text-center">
+            <div style="margin-bottom: 60px;" class="title">
                 Who's Richer?<br>
                 <span style="font-size: 18pt;">Get 7 out of 10 right to win.</span>
             </div>
-
         </div>
     </div>
 
@@ -20,6 +19,8 @@
                      celeb_2_name="{{$celeb2->name}}"
                      celeb_2_category="{{$celeb2->category}}">
     </compare-button>
+
+    <br><br><br><br><br><br><br>
 
 
 
