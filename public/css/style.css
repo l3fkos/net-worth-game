@@ -5,8 +5,12 @@
     cursor: pointer;
 }
 
+#celeb-2{
+    margin-left: 80px;
+}
+
 .celeb-name{
-    font-size: 42pt;
+    font-size: 2rem;
     color: #000000;
     font-family: Gabriola;
 }
@@ -19,7 +23,6 @@
     width: 100%;
     height: auto;
     margin-top: -150px;
-
 }
 
 .title{
@@ -30,4 +33,17 @@
 img{
     max-width: 100%;
     height: auto;
+}
+
+@media (max-width: 767px) {
+    .celeb-container{
+        margin-top:170px;
+        offset: none !important;
+    }
+    #celeb-1{
+    margin-left:10px;
+    }
+    #celeb-2{
+        margin-left: 0px;
+    }
 }

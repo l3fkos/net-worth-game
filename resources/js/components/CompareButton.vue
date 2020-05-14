@@ -2,22 +2,24 @@
     <div>
 
         <div class="row justify-content-between" style="margin-bottom: 250px;">
-            <div class="counter col-2">{{counter}} / 10</div>
+            <div class="counter col-md-2">{{counter}} / 10</div>
             <div class="rightAnswers col-md-2 offset-md-5"> Right Answers <br>{{rightAnswers}} </div>
-            <div class="wrongAnswers col-2 "> Wrong Answers <br>{{wrongAnswers}} </div>
+            <div class="wrongAnswers col-md-2"> Wrong Answers <br>{{wrongAnswers}} </div>
 
         </div>
         <div class="row" style="margin-bottom: 150px; margin-top: -200px;">
-            <div class="col-10 ml-2">
+            <div class="col-md-10 ml-2">
                 <div :class="classObject" v-if="showResult">
                     <p v-html="answer"></p>
+                    <p @click="clickNext" class="btn btn-success">
+                        Next
+                    </p>
                 </div>
             </div>
         </div>
 
         <div class="row justify-content-center d-inline">
-
-            <div class="celeb-container col-5 text-center hvr-bob  hvr-border-fade" @click="compareCelebs(1)">
+            <div id="celeb-1" class="celeb-container col-md-5 text-center hvr-bob hvr-border-fade" @click="compareCelebs(1)">
                 <div class="image-container">
                     <img class="rounded-circle" v-bind:src="celeb_1_image"  alt="celeb image">
                 </div>
@@ -28,8 +30,7 @@
                     <h3>{{celeb_1_category}}</h3>
                 </div>
             </div>
-
-            <div class="celeb-container col-5 text-center hvr-bob  hvr-border-fade ml-5" @click="compareCelebs(2)">
+            <div id="celeb-2" class="celeb-container col-md-5 text-center hvr-bob  hvr-border-fade" @click="compareCelebs(2)">
                 <div class="image-container">
                     <img class="rounded-circle" v-bind:src="celeb_2_image"  alt="celeb image">
                 </div>
@@ -40,9 +41,6 @@
                     <h3>{{celeb_2_category}}</h3>
                 </div>
             </div>
-                <button class="btn btn-dark h-50px ml-5 pl-4 pr-4" @click="clickNext">
-                    Next
-                </button>
         </div>
 
         <transition name="modal" v-if="showModal">
@@ -251,6 +249,10 @@
 </script>
 
 <style>
+    .counter{
+        font-size: 1.6rem;
+    }
+
     .correct{
         text-align: center;
         font-size: 20pt;
@@ -286,11 +288,6 @@
         margin-top: 10px;
         margin-bottom: 10px;
     }
-
-    .counter{
-        font-size: 26pt;
-    }
-
     .rightAnswers{
         font-size: 16pt;
         text-align: center;

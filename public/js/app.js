@@ -1977,8 +1977,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -6803,7 +6801,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.correct{\n    text-align: center;\n    font-size: 20pt;\n    padding: 10px;\n    border: 2px solid green;\n    border-radius: 20px;\n    color: black;\n    background-color: #98dfb6;\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.wrong{\n    text-align: center;\n    font-size: 20pt;\n    padding: 10px;\n    color: black;\n    border: 2px solid red;\n    border-radius: 20px;\n    background-color: #ff4d4d;\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.neutral{\n    text-align: center;\n    font-size: 20pt;\n    padding: 10px;\n    color: black;\n    border: 2px solid red;\n    border-radius: 20px;\n    background-color: lightgray;\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.counter{\n    font-size: 26pt;\n}\n.rightAnswers{\n    font-size: 16pt;\n    text-align: center;\n    color: black;\n    background-color: #98dfb6;\n    padding: 6px;\n    border: 2px solid black;\n    border-radius: 20px;\n}\n.wrongAnswers{\n    font-size: 16pt;\n    text-align: center;\n    padding: 6px;\n    color: black;\n    border: 2px solid black;\n    border-radius: 20px;\n    background-color: #ff4d4d;\n}\n.modal-mask {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.5);\n    display: table;\n    transition: opacity 0.3s ease;\n}\n.modal-wrapper {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container {\n    width: 300px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n    transition: all 0.3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body {\n    margin: 20px 0;\n}\n.modal-default-button {\n    float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n    opacity: 0;\n}\n.modal-leave-active {\n    opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n    transform: scale(1.1);\n}\n\n", ""]);
+exports.push([module.i, "\n.counter{\n    font-size: 1.6rem;\n}\n.correct{\n    text-align: center;\n    font-size: 20pt;\n    padding: 10px;\n    border: 2px solid green;\n    border-radius: 20px;\n    color: black;\n    background-color: #98dfb6;\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.wrong{\n    text-align: center;\n    font-size: 20pt;\n    padding: 10px;\n    color: black;\n    border: 2px solid red;\n    border-radius: 20px;\n    background-color: #ff4d4d;\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.neutral{\n    text-align: center;\n    font-size: 20pt;\n    padding: 10px;\n    color: black;\n    border: 2px solid red;\n    border-radius: 20px;\n    background-color: lightgray;\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.rightAnswers{\n    font-size: 16pt;\n    text-align: center;\n    color: black;\n    background-color: #98dfb6;\n    padding: 6px;\n    border: 2px solid black;\n    border-radius: 20px;\n}\n.wrongAnswers{\n    font-size: 16pt;\n    text-align: center;\n    padding: 6px;\n    color: black;\n    border: 2px solid black;\n    border-radius: 20px;\n    background-color: #ff4d4d;\n}\n.modal-mask {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.5);\n    display: table;\n    transition: opacity 0.3s ease;\n}\n.modal-wrapper {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container {\n    width: 300px;\n    margin: 0px auto;\n    padding: 20px 30px;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n    transition: all 0.3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body {\n    margin: 20px 0;\n}\n.modal-default-button {\n    float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n    opacity: 0;\n}\n.modal-leave-active {\n    opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n    transform: scale(1.1);\n}\n\n", ""]);
 
 // exports
 
@@ -38608,7 +38606,7 @@ var render = function() {
           staticStyle: { "margin-bottom": "250px" }
         },
         [
-          _c("div", { staticClass: "counter col-2" }, [
+          _c("div", { staticClass: "counter col-md-2" }, [
             _vm._v(_vm._s(_vm.counter) + " / 10")
           ]),
           _vm._v(" "),
@@ -38618,7 +38616,7 @@ var render = function() {
             _vm._v(_vm._s(_vm.rightAnswers) + " ")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "wrongAnswers col-2 " }, [
+          _c("div", { staticClass: "wrongAnswers col-md-2" }, [
             _vm._v(" Wrong Answers "),
             _c("br"),
             _vm._v(_vm._s(_vm.wrongAnswers) + " ")
@@ -38633,10 +38631,19 @@ var render = function() {
           staticStyle: { "margin-bottom": "150px", "margin-top": "-200px" }
         },
         [
-          _c("div", { staticClass: "col-10 ml-2" }, [
+          _c("div", { staticClass: "col-md-10 ml-2" }, [
             _vm.showResult
               ? _c("div", { class: _vm.classObject }, [
-                  _c("p", { domProps: { innerHTML: _vm._s(_vm.answer) } })
+                  _c("p", { domProps: { innerHTML: _vm._s(_vm.answer) } }),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    {
+                      staticClass: "btn btn-success",
+                      on: { click: _vm.clickNext }
+                    },
+                    [_vm._v("\n                    Next\n                ")]
+                  )
                 ])
               : _vm._e()
           ])
@@ -38648,7 +38655,8 @@ var render = function() {
           "div",
           {
             staticClass:
-              "celeb-container col-5 text-center hvr-bob  hvr-border-fade",
+              "celeb-container col-md-5 text-center hvr-bob hvr-border-fade",
+            attrs: { id: "celeb-1" },
             on: {
               click: function($event) {
                 return _vm.compareCelebs(1)
@@ -38678,7 +38686,8 @@ var render = function() {
           "div",
           {
             staticClass:
-              "celeb-container col-5 text-center hvr-bob  hvr-border-fade ml-5",
+              "celeb-container col-md-5 text-center hvr-bob  hvr-border-fade",
+            attrs: { id: "celeb-2" },
             on: {
               click: function($event) {
                 return _vm.compareCelebs(2)
@@ -38702,15 +38711,6 @@ var render = function() {
               _c("h3", [_vm._v(_vm._s(_vm.celeb_2_category))])
             ])
           ]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-dark h-50px ml-5 pl-4 pr-4",
-            on: { click: _vm.clickNext }
-          },
-          [_vm._v("\n                Next\n            ")]
         )
       ]),
       _vm._v(" "),
